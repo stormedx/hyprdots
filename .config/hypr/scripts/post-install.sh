@@ -3,7 +3,7 @@
 # This is a post-install script I created for simply automating my boring post-installation programs & preferences. More will come later.
 
 echo "Updating system..."
-sudo pacman -Syu --needed --noconfirm git vim nano wget curl glib2
+sudo pacman -Syu --needed --noconfirm git vim nano wget curl glib2 reflector seatd
 
 # Set keyboard repeat rate for X11
 sudo xset r rate 300 50
@@ -20,11 +20,9 @@ echo "Installing Wayland, general system dependencies & programs..."
 sleep 1
 sudo pacman -S --needed --noconfirm wayland wayland-protocols xorg-server-xwayland
 sudo pacman -S --needed --noconfirm kitty nerd-fonts python-pip flatpak wget curl neofetch openssh samba nfs-utils ufw
-yay -S --needed --noconfirm ranger ttf-ms-fonts ttf-roboto-mono ttf-roboto ttf-roboto-slab ttf-ubuntu-font-family ttf-joypixels ttf-twemoji-color ttf-symbola ttf-weather-icons ttf-material-design-icons-extended ttf-material-design-icons ttf-font-awesome-4 ttf-font-awesome ttf-hack ttf-fira-code ttf-fira-mono ttf-fira-sans ttf-cascadia-code ttf-cascadia-code-pl ttf-cascadia-mono ttf-cascadia-mono-pl ttf-cascadia-sans ttf-cascadia-sans-pl ttf-cascadia-sans-mono ttf-cascadia-sans-mono-pl ttf-cascadia-code-jetbrains-mono ttf-cascadia-code-jetbrains-mono-pl ttf-cascadia-code-jetbrains-mono-mono ttf-cascadia-code-jetbrains-mono-mono-pl ttf-cascadia-code-jetbrains-mono-sans ttf-cascadia-code-jetbrains-mono-sans-pl ttf-cascadia-code-jetbrains-mono-sans-mono ttf-cascadia-code-jetbrains-mono-sans-mono-pl ttf-cascadia-code-jetbrains-mono-slab ttf-cascadia-code-jetbrains-mono-slab-pl ttf-cascadia-code-jetbrains-mono-slab-mono ttf-cascadia-code-jetbrains-mono-slab-mono-pl ttf-cascadia-code-jetbrains-mono-italic ttf-cascadia-code-jetbrains-mono-italic-pl ttf-cascadia-code-jetbrains-mono-italic-mono ttf-cascadia-code-jetbrains-mono-italic-mono-pl ttf-cascadia-code-jetbrains-mono-sans-italic ttf-cascadia-code-jetbrains-mono-sans-italic-pl ttf-cascadia-code-jetbrains-mono-sans-italic-mono ttf-cascadia-code-jetbrains-mono-sans-italic-mono-pl ttf-cascadia-code-jetbrains-mono-slab-italic ttf-cascadia-code-jetbrains-mono-slab-italic-pl ttf-cascadia-code-jetbrains-mono-slab-italic-mono ttf-cascadia-code-jetbrains-mono-slab-italic-mono-pl ttf-cascadia-code-jetbrains-mono-italic-sans ttf-cascadia-code-jetbrains-mono-italic-sans 
+yay -Syu --needed --noconfirm ranger ttf-ms-fonts ttf-roboto-mono ttf-roboto ttf-roboto-slab ttf-ubuntu-font-family ttf-joypixels ttf-twemoji-color ttf-symbola ttf-weather-icons ttf-material-design-icons-extended ttf-material-design-icons ttf-font-awesome-4 ttf-font-awesome ttf-hack ttf-fira-code ttf-fira-mono ttf-fira-sans ttf-cascadia-code ttf-cascadia-code-pl ttf-cascadia-mono ttf-cascadia-mono-pl ttf-cascadia-sans ttf-cascadia-sans-pl ttf-cascadia-sans-mono ttf-cascadia-sans-mono-pl
 # Installing additional Hyprland-related packages I use
-yay -S --needed --noconfirm dunst wofi swaybg swayidle swaylock swaylock-effects waybar
-sudo pacman -Syu
-yay -Syu
+yay -Syu --needed --noconfirm dunst wofi swaybg swayidle swaylock swaylock-effects
 
 # Optional applications
 echo "Install additional applications (discord, steam, etc.) (Y/n)"
@@ -40,7 +38,7 @@ then    echo "Installing applications..."
         sudo pacman -Syu
 else    echo "Skipping applications..."
 fi
-echo "programs installed!"
+echo "Done!"
 sleep 1
 
 # firewall configurartion
@@ -58,7 +56,7 @@ packages=("hyprland" "hyprland-nvidia")
 echo "1) Install Hyprland"
 echo "2) Install Hyprland with Nvidia Support"
 echo "3) Exit"
-echo -n "Please select an option (1 or 2, press Enter for default): "
+echo -n "Please select an option (1 or 2, default is 1.): "
 read -r choice
 # Choice-based selection, defaults to 1
 choice=${choice:-1}
